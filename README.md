@@ -56,10 +56,6 @@ HTML, CSS and vanilla JavaScript in a single file, plus JSZip (loaded from a CDN
 - More templates and design presets
 - Automated tests for the generator
 
-## About this project
-
-Built with AI assistance (Claude). Product idea, requirements, UX decisions and testing by me.
-
 ## License
 
 MIT
