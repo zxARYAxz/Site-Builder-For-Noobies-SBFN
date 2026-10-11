@@ -134,8 +134,8 @@ $('#bk').onclick=()=>{s--;show()};$('#nx').onclick=()=>{s++;show()};
 document.querySelectorAll('[data-w]').forEach(b=>b.onclick=()=>$('#pv iframe').style.maxWidth=b.dataset.w);
 const README=`راهنمای سایت شما\n\n۱. برای دیدن سایت، فایل index.html را با دوبار کلیک باز کنید.\n۲. برای تغییر رنگ و ظاهر، بالای فایل css/style.css را ببینید (بخش :root).\n۳. عکس‌ها در پوشه images هستند. برای عوض‌کردن هر عکس، عکس جدید را با همان اسم و پسوند (.jpg) جایگزین کنید.\n۴. برای آنلاین کردن: پوشه را روی netlify.com/drop بکشید یا از GitHub Pages استفاده کنید.\n`;
 async function exp(){const st=$('#st');let dl=null;try{dl=await claude.use('downloads')}catch(e){}
-if(!dl){st.textContent='ذخیره فایل در این نمایش ممکن نیست.';return}
+
 const p=parts(true),z=new JSZip();z.file('index.html',page(false,p));z.file('css/style.css',p.css);p.files.forEach(([n,d])=>z.file(n,d.split(',')[1],{base64:true}));if(p.js)z.file('js/main.js',p.js);z.file('README.txt',README);
-try{await dl.save({filename:'my-site.zip',data:await z.generateAsync({type:'blob'})});st.textContent='ذخیره شد.'}catch(e){st.textContent=e.code==='declined'?'ذخیره لغو شد.':'ذخیره نشد.'}}
+try{const bl=await z.generateAsync({type:'blob'});if(dl)await dl.save({filename:'my-site.zip',data:bl});else{const a=document.createElement('a');a.href=URL.createObjectURL(bl);a.download='my-site.zip';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1e4)}st.textContent='ذخیره شد.'}catch(e){st.textContent=e.code==='declined'?'ذخیره لغو شد.':'ذخیره نشد.'}}
 show();pv();
 </script></body></html>
