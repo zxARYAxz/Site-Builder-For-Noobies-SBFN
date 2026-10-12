@@ -1,6 +1,4 @@
 # Site-Builder-For-Noobies-SBFN
-# Site Builder
-
 A step-by-step, no-code website builder with a Persian (RTL) interface. Users answer simple questions ("Do you want a navbar?", "Do you want an ad popup?"), customize each part, watch a live preview, and download a clean, ready-to-use website as a ZIP.
 
 ## Features
