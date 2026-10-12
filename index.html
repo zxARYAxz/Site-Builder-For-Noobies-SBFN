@@ -1,7 +1,7 @@
 <!doctype html><html lang="fa" dir="rtl"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>سایت‌ساز</title>
-<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700&family=Noto+Sans+Arabic:wght@400;700&family=Amiri:wght@400;700&family=Lalezar&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
 <style>
 :root{--bg:#f6f7f9;--cd:#fff;--fg:#1c1c1e;--mu:#6b7280;--ln:#e2e4e9;--ac:#0f766e;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
@@ -10,7 +10,7 @@
 body{margin:0;background:var(--bg);color:var(--fg);font-family:Vazirmatn,Tahoma,sans-serif;line-height:1.8}
 main{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(360px,1fr);gap:18px;padding:18px;min-height:100vh;align-items:start}
 #panel,#pv{background:var(--cd);border:1px solid var(--ln);border-radius:18px;box-shadow:0 8px 30px #00000008}
-#panel{display:grid;grid-template-columns:minmax(190px,220px) minmax(0,1fr);gap:18px;padding:16px;align-items:start;min-width:0}
+#panel{display:grid;grid-template-columns:minmax(200px,230px) minmax(0,1fr);gap:18px;padding:16px;align-items:start;min-width:0}
 #pc{min-width:0;padding:4px 4px 8px}
 #pv{position:sticky;top:18px;height:calc(100vh - 36px);display:flex;flex-direction:column;gap:10px;padding:12px;min-width:0}
 #pv iframe{flex:1;width:100%;max-width:100%;margin:auto;border:1px solid var(--ln);border-radius:12px;background:#fff;transition:max-width .2s ease}
@@ -21,9 +21,11 @@ input,textarea{width:100%;font:inherit;padding:10px;border:1px solid var(--ln);b
 textarea{min-height:90px}input[type=color]{height:44px;padding:3px}
 button{font:inherit;cursor:pointer;border:1px solid var(--ln);background:var(--cd);color:var(--fg);border-radius:10px;padding:10px 18px;transition:background .15s,border-color .15s,transform .15s}
 button:hover:not(:disabled){border-color:var(--ac)}button:active:not(:disabled){transform:scale(.985)}
+button:disabled{opacity:.4;cursor:not-allowed}
 button:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid var(--ac);outline-offset:2px}
 .row{display:flex;gap:8px;flex-wrap:wrap}.row+.row{margin-top:8px}
 #rail{position:sticky;top:16px;display:flex;flex-direction:column;gap:8px;min-width:0;padding:2px}
+.srch{padding:2px 2px 8px}.srch input{padding:8px 12px;font-size:.85rem}
 .nav-group{border:1px solid var(--ln);border-radius:13px;overflow:hidden;background:var(--bg)}
 .group-toggle{width:100%;display:flex;align-items:center;gap:9px;padding:10px 11px;border:0;border-radius:0;background:transparent;text-align:right;font-size:.88rem;font-weight:700}
 .group-toggle .group-icon{width:29px;height:29px;display:grid;place-items:center;border-radius:9px;background:var(--cd);color:var(--fg);flex:none}
@@ -34,37 +36,76 @@ button:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px soli
 .step-link .step-icon{width:23px;display:grid;place-items:center;flex:none;opacity:.85}.step-link.on{background:var(--ac);border-color:var(--ac);color:#fff}.step-link .step-num{margin-inline-start:auto;font-size:.7rem;opacity:.65}
 .ch{flex:1;min-width:90px}.ch.on{background:var(--ac);color:#fff;border-color:var(--ac)}
 .sw{flex:0 0 40px;min-width:40px;height:40px;padding:0;border-radius:50%}.sw.on{outline:3px solid var(--fg);outline-offset:2px}
-.foot{display:flex;justify-content:space-between;margin-top:26px}.pri{background:var(--ac);color:#fff;border-color:var(--ac)}
+.foot{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:26px}.pri{background:var(--ac);color:#fff;border-color:var(--ac)}
+.ur{display:flex;gap:4px}.ur button{padding:8px 12px;font-size:15px;min-width:38px}
 .ord{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid var(--ln)}.ord input{flex:1;min-width:0}.ord span{white-space:nowrap}.th{width:48px;height:48px;object-fit:cover;border-radius:8px;flex:none}.box{border:1px solid var(--ln);border-radius:12px;padding:12px;margin-top:14px}
-.group-icon svg,.step-icon svg,.chev svg{display:block}
-.step-icon,.chev{line-height:0}
+.group-icon svg,.step-icon svg,.chev svg{display:block}.step-icon,.chev{line-height:0}
+.tpl-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:8px;margin:8px 0}
+.tpl-grid button{padding:14px 10px;display:flex;flex-direction:column;gap:6px;align-items:center;font-size:.82rem;border-radius:12px;background:var(--bg)}
+.tpl-grid button svg{color:var(--ac)}
 @media(max-width:1050px){main{grid-template-columns:minmax(0,1fr)}#pv{position:static;height:70vh;min-height:420px;grid-row:2}#panel{grid-row:1}}
-@media(max-width:620px){main{padding:8px;gap:10px}#panel{grid-template-columns:1fr;padding:10px;gap:12px;border-radius:14px}#rail{position:static;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}#pc{padding:4px 2px 8px}#pv{height:62vh;min-height:360px;padding:8px;border-radius:14px}.group-toggle{padding:8px;font-size:.8rem}.group-toggle .group-icon{width:25px;height:25px}.step-link{font-size:.78rem;padding:7px}#cnt{display:block;margin-top:6px}.foot{margin-top:18px}}
+@media(max-width:620px){main{padding:8px;gap:10px}#panel{grid-template-columns:1fr;padding:10px;gap:12px;border-radius:14px}#rail{position:static;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}#pc{padding:4px 2px 8px}#pv{height:62vh;min-height:360px;padding:8px;border-radius:14px}.group-toggle{padding:8px;font-size:.8rem}.group-toggle .group-icon{width:25px;height:25px}.step-link{font-size:.78rem;padding:7px}#cnt{display:block;margin-top:6px}.foot{margin-top:18px}.tpl-grid{grid-template-columns:repeat(2,1fr)}}
 </style></head><body>
 <main>
-<section id="panel"><nav id="rail" aria-label="مراحل"></nav><div id="pc"><div id="bar"><i></i></div><small id="cnt"></small><h2 id="ttl"></h2><p class="hint" id="hnt"></p><div id="body"></div>
-<div class="foot"><button id="bk">قبلی</button><button id="nx" class="pri">بعدی</button></div></div></section>
+<section id="panel">
+  <nav id="rail" aria-label="مراحل">
+    <div class="srch"><input id="srch" type="search" placeholder="جستجو در تنظیمات…" aria-label="جستجو"></div>
+  </nav>
+  <div id="pc"><div id="bar"><i></i></div><small id="cnt"></small><h2 id="ttl"></h2><p class="hint" id="hnt"></p><div id="body"></div>
+  <div class="foot"><button id="bk">قبلی</button><span class="ur"><button id="un" title="واگرد (Ctrl+Z)">↶</button><button id="re" title="ازنو (Ctrl+Y)">↷</button></span><button id="nx" class="pri">بعدی</button></div></div>
+</section>
 <section id="pv"><div class="row"><button class="ch" data-w="100%">دسکتاپ</button><button class="ch" data-w="375px">موبایل</button></div>
-<iframe title="پیش‌نمایش سایت" sandbox="allow-scripts"></iframe></section>
+<iframe title="پیش‌نمایش سایت" sandbox="allow-scripts allow-popups"></iframe></section>
 </main>
 <script>
 const $=s=>document.querySelector(s),esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const NS=()=>({title:'دسته‌بندی‌ها',place:'full',side:'left',after:'hero',mv:true,dir:'rtl',spd:4,items:[{img:'',t:'مورد اول',link:''},{img:'',t:'مورد دوم',link:''},{img:'',t:'مورد سوم',link:''}]});
 const NA=()=>({img:'',t:'',d:'',bt:'',link:'',mode:'inline',side:'left',delay:2});
 const NI=t=>({t,d:'توضیح کوتاه',p:'',imgs:[],pos:'top',bon:false,bt:'اطلاعات بیشتر',bl:''});
-const C={name:'سایت من',tag:'یک جمله درباره‌ی ما',color:'#0f766e',theme:'light',font:'tahoma',radius:'soft',
-nav:{on:true,style:'bar',dark:true},
-hero:{on:true,layout:'center',img:'',link:'#contact',fix:false,title:'به سایت ما خوش آمدید',text:'اینجا توضیح کوتاهی می‌نویسید که بازدیدکننده بفهمد شما چه کار می‌کنید.',btn:'تماس با ما'},
-about:{on:true,title:'درباره ما',text:'از خودتان، تیم یا کسب‌وکارتان بنویسید.'},
-services:{on:true,title:'خدمات ما',cols:3,list:[NI('مورد اول'),NI('مورد دوم'),NI('مورد سوم')]},
-contact:{on:true,title:'تماس با ما',email:'',phone:''},
-gallery:{on:false,title:'گالری',cols:3,imgs:[]},
-ads:{on:false,list:[]},
-sliders:[],
-login:{on:false,title:'ورود به حساب',email:true,google:true,github:true,eurl:'',gurl:'',hurl:''},
-footer:{on:true,address:'',instagram:'',telegram:'',copy:'همه حقوق محفوظ است.'},
-order:['hero','ads','about','services','gallery','contact']};
-const L={hero:'بخش اصلی',about:'درباره ما',services:'خدمات و محصولات',gallery:'گالری',ads:'پنل تبلیغات',contact:'تماس'};
+
+const DEFAULT={
+ name:'سایت من',tag:'یک جمله درباره‌ی ما',color:'#0f766e',theme:'light',font:'tahoma',radius:'soft',
+ nav:{on:true,style:'bar',dark:true},
+ hero:{on:true,layout:'center',img:'',link:'#contact',fix:false,title:'به سایت ما خوش آمدید',text:'اینجا توضیح کوتاهی می‌نویسید که بازدیدکننده بفهمد شما چه کار می‌کنید.',btn:'تماس با ما'},
+ about:{on:true,title:'درباره ما',text:'از خودتان، تیم یا کسب‌وکارتان بنویسید.'},
+ services:{on:true,title:'خدمات ما',cols:3,list:[NI('مورد اول'),NI('مورد دوم'),NI('مورد سوم')]},
+ contact:{on:true,title:'تماس با ما',email:'',phone:'',endpoint:''},
+ gallery:{on:false,title:'گالری',cols:3,imgs:[]},
+ ads:{on:false,list:[]},
+ sliders:[],
+ login:{on:false,title:'ورود به حساب',email:true,google:true,github:true,eurl:'',gurl:'',hurl:''},
+ footer:{on:true,address:'',instagram:'',telegram:'',whatsapp:'',linkedin:'',twitter:'',youtube:'',email:'',copy:'همه حقوق محفوظ است.'},
+ seo:{desc:'',keywords:'',og:'',favicon:''},
+ extras:{wa:false,top:true,prog:false,anim:true},
+ order:['hero','ads','about','services','gallery','contact']
+};
+let C=JSON.parse(JSON.stringify(DEFAULT));
+const clone=o=>JSON.parse(JSON.stringify(o));
+function dm(t,s){if(Array.isArray(s))return clone(s);if(!s||typeof s!=='object')return s;const r={...(t||{})};for(const k in s){if(s[k]&&typeof s[k]==='object'&&!Array.isArray(s[k]))r[k]=dm(t&&t[k]||{},s[k]);else if(Array.isArray(s[k]))r[k]=clone(s[k]);else r[k]=s[k]}return r}
+
+/* ذخیره‌سازی خودکار */
+const SK='site-builder-v1';
+const save=()=>{try{localStorage.setItem(SK,JSON.stringify(C))}catch(e){}};
+let svT;const saveD=()=>{clearTimeout(svT);svT=setTimeout(save,300)};
+const load=()=>{try{const d=localStorage.getItem(SK);if(d)C=dm(clone(DEFAULT),JSON.parse(d))}catch(e){}};
+
+/* Undo / Redo */
+const H={past:[],future:[]};
+const snap=()=>{H.past.push(JSON.stringify(C));if(H.past.length>80)H.past.shift();H.future.length=0;updUR()};
+const undo=()=>{if(!H.past.length)return;H.future.push(JSON.stringify(C));C=JSON.parse(H.past.pop());save();show();pv();updUR()};
+const redo=()=>{if(!H.future.length)return;H.past.push(JSON.stringify(C));C=JSON.parse(H.future.pop());save();show();pv();updUR()};
+const updUR=()=>{const a=$('#un'),b=$('#re');if(a)a.disabled=!H.past.length;if(b)b.disabled=!H.future.length};
+
+/* قالب‌های آماده */
+const TEMPLATES={
+ restaurant:{label:'رستوران',icon:'<path d="M7 3v8a2 2 0 002 2h0V3M5 3v6a2 2 0 002 2v10M17 3c-1.5 0-3 1.5-3 4v6h3v8"/>',data:{color:'#dc2626',font:'serif',radius:'round',hero:{title:'طعم اصیل ایرانی',text:'با ۲۰ سال تجربه، غذاهای خانگی با مواد اولیه‌ی تازه در محیطی گرم و دلنشین.',btn:'مشاهده منو',link:'#services'},about:{title:'درباره‌ی رستوران ما',text:'از سال ۱۳۸۰ با عشق، غذاهای اصیل ایرانی را برای شما آماده می‌کنیم. همه‌ی مواد اولیه از تأمین‌کنندگان معتبر تهیه می‌شوند.'},services:{title:'منوی ما',list:[NI('چلوکباب سلطانی'),NI('قورمه‌سبزی'),NI('جوجه‌کباب زعفرانی')]},contact:{title:'رزرو میز'},footer:{copy:'© رستوران ما · تمام حقوق محفوظ است.'}}},
+ portfolio:{label:'پورتفولیو',icon:'<rect x="3" y="3" width="8" height="8" rx="1"/><rect x="13" y="3" width="8" height="8" rx="1"/><rect x="3" y="13" width="8" height="8" rx="1"/><rect x="13" y="13" width="8" height="8" rx="1"/>',data:{color:'#7c3aed',font:'system',radius:'sharp',hero:{title:'سلام، من یک طراح هستم.',text:'کارهای من را ببینید و اگر دوست داشتید، با من همکاری کنید.',btn:'مشاهده نمونه‌کارها',link:'#services'},about:{title:'درباره‌ی من',text:'۵ سال است در حوزه‌ی طراحی رابط کاربری و برند فعالیت می‌کنم.'},services:{title:'خدمات',cols:3,list:[NI('طراحی رابط کاربری'),NI('طراحی برند'),NI('طراحی موشن')]},gallery:{on:true,title:'نمونه‌کارها',cols:3,imgs:[]},footer:{copy:'© من · تمام حقوق محفوظ است.'}}},
+ shop:{label:'فروشگاه',icon:'<path d="M5 8h14l-1 12H6z"/><path d="M9 8a3 3 0 016 0"/>',data:{color:'#ea580c',font:'tahoma',radius:'soft',hero:{title:'خرید آنلاین با ارسال سریع',text:'جدیدترین محصولات با بهترین قیمت.',btn:'مشاهده محصولات',link:'#services'},about:{title:'درباره‌ی فروشگاه',text:'ارسال سریع به تمام نقاط کشور و ضمانت بازگشت وجه.'},services:{title:'محصولات',cols:3,list:[NI('محصول اول'),NI('محصول دوم'),NI('محصول سوم')]},contact:{title:'پشتیبانی'},footer:{copy:'© فروشگاه · تمام حقوق محفوظ است.'}}},
+ clinic:{label:'کلینیک',icon:'<path d="M12 3v6M9 6h6"/><rect x="4" y="11" width="16" height="10" rx="2"/>',data:{color:'#0ea5e9',font:'tahoma',radius:'soft',hero:{title:'سلامتی شما، اولویت ماست.',text:'با کادری مجرب و تجهیزات مدرن در خدمت شما هستیم.',btn:'رزرو نوبت',link:'#contact'},about:{title:'درباره‌ی کلینیک',text:'ما با تیمی از پزشکان متخصص و پرستاران دلسوز، خدمات درمانی با کیفیت ارائه می‌دهیم.'},services:{title:'خدمات',cols:3,list:[NI('ویزیت عمومی'),NI('مشاوره تخصصی'),NI('آزمایشگاه')]},contact:{title:'رزرو نوبت'},footer:{copy:'© کلینیک · تمام حقوق محفوظ است.'}}},
+ education:{label:'آموزشگاه',icon:'<path d="M3 9l9-5 9 5-9 5z"/><path d="M7 11v4a4 4 0 008 0v-4"/>',data:{color:'#16a34a',font:'tahoma',radius:'soft',hero:{title:'آینده‌ات را بساز',text:'دوره‌های تخصصی با اساتید مجرب و مدرک معتبر.',btn:'مشاهده دوره‌ها',link:'#services'},about:{title:'درباره‌ی آموزشگاه',text:'بیش از ۱۰ سال است در حوزه‌ی آموزش فعالیت می‌کنیم.'},services:{title:'دوره‌های ما',cols:3,list:[NI('دوره‌ی مقدماتی'),NI('دوره‌ی پیشرفته'),NI('دوره‌ی تخصصی')]},contact:{title:'مشاوره رایگان'},footer:{copy:'© آموزشگاه · تمام حقوق محفوظ است.'}}},
+ agency:{label:'آژانس',icon:'<circle cx="12" cy="12" r="9"/><path d="M16.2 7.8l-2.4 6-6 2.4 2.4-6z"/>',data:{color:'#111827',font:'system',radius:'soft',hero:{title:'برند شما، متمایز و به‌یادماندنی.',text:'استراتژی، طراحی و اجرای کمپین‌های تبلیغاتی.',btn:'گفتگو با ما',link:'#contact'},about:{title:'درباره‌ی آژانس',text:'ما با تیمی از متخصصان خلاق، برندها را به جایگاه شایسته‌شان می‌رسانیم.'},services:{title:'خدمات ما',cols:3,list:[NI('استراتژی برند'),NI('طراحی هویت'),NI('کمپین تبلیغاتی')]},contact:{title:'شروع همکاری'},footer:{copy:'© آژانس · تمام حقوق محفوظ است.'}}}
+};
+
 const get=p=>p.split('.').reduce((o,k)=>o[k],C),set=(p,v)=>{const a=p.split('.'),l=a.pop();a.reduce((o,k)=>o[k],C)[l]=v};
 const T=(p,l,m)=>`<label>${l}${m?`<textarea data-k="${p}">${esc(get(p))}</textarea>`:`<input data-k="${p}" value="${esc(get(p))}">`}</label>`;
 const ch=(p,o)=>`<div class="row">${o.map(([v,l])=>`<button class="ch ${String(get(p))===String(v)?'on':''}" data-k="${p}" data-v="${v}">${l}</button>`).join('')}</div>`;
@@ -74,9 +115,10 @@ const sUI=(s,i)=>{const k='sliders.'+i;return`<div class="box"><div class="ord">
 const adUI=(a,i)=>{const k='ads.list.'+i;return`<div class="box"><div class="ord"><b>تبلیغ ${i+1}</b><button data-ar="${i}">✕</button></div><h3>محل نمایش</h3>${ch(k+'.mode',[['inline','داخل صفحه'],['corner','گوشه صفحه (قابل بستن)'],['popup','وسط صفحه (پاپ‌آپ)']])}${a.mode==='corner'?`<h3>کدام گوشه؟</h3>${ch(k+'.side',[['left','چپ'],['right','راست']])}`:''}${a.mode!=='inline'?T(k+'.delay','نمایش بعد از چند ثانیه؟'):''}${a.img?`<img class="th" style="width:100%;height:auto;max-height:120px" src="${a.img}" alt="">`:''}<label>${a.img?'تغییر عکس بنر':'انتخاب عکس بنر'}<input type="file" accept="image/*" data-up="a${i}"></label>${T(k+'.t','عنوان تبلیغ (اختیاری)')}${T(k+'.d','متن تبلیغ (اختیاری)',1)}${T(k+'.bt','متن دکمه (اگر دکمه می‌خواهید)')}${T(k+'.link','لینک (با کلیک روی عکس یا دکمه باز می‌شود)')}</div>`};
 const itemUI=(m,i)=>{const k='services.list.'+i;return`<div class="box"><div class="ord"><b>مورد ${i+1}</b><span><button data-im="${i},-1">▲</button> <button data-im="${i},1">▼</button> <button data-ir="${i}">✕</button></span></div>${T(k+'.t','عنوان')}${T(k+'.p','قیمت (اختیاری)')}${T(k+'.d','توضیح',1)}<h3>جای عکس</h3>${ch(k+'.pos',[['top','بالا'],['side','کنار'],['bottom','پایین']])}${m.imgs.map((d,j)=>`<div class="ord"><img class="th" src="${d}" alt=""><button data-ix="${i},${j}">حذف عکس</button></div>`).join('')}<label>افزودن عکس (می‌توانید چند عکس انتخاب کنید)<input type="file" accept="image/*" multiple data-up="i${i}"></label><h3>دکمه می‌خواهید؟</h3>${ch(k+'.bon',[[true,'بله'],[false,'نه']])}${m.bon?T(k+'.bt','متن دکمه')+T(k+'.bl','لینک دکمه (مثلاً https://...)'):''}</div>`};
 const sw=['#0f766e','#2563eb','#7c3aed','#db2777','#ea580c','#16a34a','#111827'];
+
 const steps=[
-['نام سایت','سایتتان چه اسمی دارد؟',()=>T('name','نام سایت')+T('tag','یک جمله درباره‌ی سایت')],
-['ظاهر سایت','رنگ و حال‌وهوای سایت را انتخاب کنید.',()=>`<h3>رنگ اصلی</h3><div class="row">${sw.map(c=>`<button class="ch sw ${C.color===c?'on':''}" style="background:${c}" aria-label="${c}" data-k="color" data-v="${c}"></button>`).join('')}</div>${T('color','رنگ دلخواه').replace('<input','<input type="color"')}<h3>حالت</h3>${ch('theme',[['light','روشن'],['dark','تیره']])}<h3>فونت</h3>${ch('font',[['tahoma','ساده'],['system','مدرن'],['serif','رسمی']])}<h3>گوشه‌ها</h3>${ch('radius',[['sharp','تیز'],['soft','نرم'],['round','گرد']])}`],
+['نام سایت','با یک قالب آماده شروع کنید یا از صفر بسازید.',()=>`<h3>شروع سریع با قالب</h3><div class="tpl-grid">${Object.entries(TEMPLATES).map(([k,v])=>`<button data-tpl="${k}">${svg(v.icon,22)}<span>${v.label}</span></button>`).join('')}</div><h3>اطلاعات پایه</h3>${T('name','نام سایت')}${T('tag','یک جمله درباره‌ی سایت')}`],
+['ظاهر سایت','رنگ و حال‌وهوای سایت را انتخاب کنید.',()=>`<h3>رنگ اصلی</h3><div class="row">${sw.map(c=>`<button class="ch sw ${C.color===c?'on':''}" style="background:${c}" aria-label="${c}" data-k="color" data-v="${c}"></button>`).join('')}</div>${T('color','رنگ دلخواه').replace('<input','<input type="color"')}<h3>حالت</h3>${ch('theme',[['light','روشن'],['dark','تیره']])}<h3>فونت</h3>${ch('font',[['tahoma','ساده'],['vazir','وزیرمتن'],['noto','نوتو عربی'],['amiri','امیری'],['lalezar','لاله‌زار'],['system','مدرن'],['serif','رسمی']])}<h3>گوشه‌ها</h3>${ch('radius',[['sharp','تیز'],['soft','نرم'],['round','گرد']])}`],
 ['منوی بالا','',()=>yn('nav.on','منوی بالای صفحه می‌خواهید؟')+(C.nav.on?`<h3>شکل منو</h3>${ch('nav.style',[['bar','نوار افقی'],['drawer','کشوی کناری']])}${yn('nav.dark','دکمه‌ی حالت تیره/روشن باشد؟')}`:'')],
 ['بخش اصلی','اولین چیزی که بازدیدکننده می‌بیند.',()=>yn('hero.on','بخش اصلی باشد؟')+(C.hero.on?`<h3>چیدمان</h3>${ch('hero.layout',[['center','وسط‌چین'],['side','متن و تصویر'],['cover','پس‌زمینه تمام‌عرض']])}${C.hero.layout==='cover'?`<h3>موقع پایین رفتن صفحه</h3>${ch('hero.fix',[[false,'مثل بقیه بالا می‌رود'],[true,'ثابت می‌ماند و بقیه صفحه روی آن می‌لغزد']])}`:''}${heroImg()}${T('hero.title','تیتر')}${T('hero.text','توضیح',1)}${T('hero.btn','متن دکمه')}${T('hero.link','لینک دکمه (آدرس سایت، یا #contact برای رفتن به بخش تماس)')}`:'')],
 ['پنل تبلیغات','بنرهای تصویری که با کلیک روی آن‌ها یک لینک باز می‌شود.',()=>yn('ads.on','پنل تبلیغات می‌خواهید؟')+(C.ads.on?C.ads.list.map(adUI).join('')+`<p><button class="pri" data-aa="1">+ افزودن تبلیغ</button></p>`:'')],
@@ -84,109 +126,104 @@ const steps=[
 ['خدمات و محصولات','هر مورد می‌تواند عنوان، قیمت، توضیح و عکس داشته باشد.',()=>yn('services.on','بخش خدمات یا محصولات باشد؟')+(C.services.on?T('services.title','عنوان بخش')+`<h3>تعداد ستون</h3>${ch('services.cols',[[1,'۱'],[2,'۲'],[3,'۳']])}${C.services.list.map(itemUI).join('')}<p><button class="pri" data-add="1">+ افزودن مورد</button></p>`:'')],
 ['گالری عکس','هر تعداد عکس که می‌خواهید اضافه کنید.',()=>yn('gallery.on','گالری عکس باشد؟')+(C.gallery.on?T('gallery.title','عنوان بخش')+`<h3>تعداد ستون</h3>${ch('gallery.cols',[[2,'۲'],[3,'۳'],[4,'۴']])}<label>افزودن عکس (چند عکس را می‌توانید با هم انتخاب کنید)<input type="file" accept="image/*" multiple data-up="g"></label>${C.gallery.imgs.map((m,i)=>`<div class="ord"><img class="th" src="${m.d}" alt=""><input data-k="gallery.imgs.${i}.a" value="${esc(m.a)}" placeholder="توضیح عکس (اختیاری)"><span><button data-gm="${i},-1">▲</button> <button data-gm="${i},1">▼</button> <button data-rm="g.${i}">✕</button></span></div>`).join('')}`:'')],
 ['اسلایدر و دسته‌بندی','نوار تصویری متحرک با هر تعداد آیتم، در جاهای مختلف سایت.',()=>(C.sliders.length?C.sliders.map(sUI).join(''):'<p class="hint">هنوز اسلایدری اضافه نکرده‌اید. اگر نمی‌خواهید، از این مرحله رد شوید.</p>')+`<p><button class="pri" data-sa="1">+ افزودن اسلایدر</button></p>`],
-['ورود به سایت','دکمهٔ «ورود» که یک پنجره باز می‌کند.',()=>yn('login.on','قابلیت ورود (لاگین) می‌خواهید؟')+(C.login.on?T('login.title','عنوان پنجره')+yn('login.email','ورود با ایمیل و رمز عبور؟')+(C.login.email?T('login.eurl','آدرس سرویس ورود (action فرم)'):'')+yn('login.google','ورود با گوگل؟')+(C.login.google?T('login.gurl','لینک ورود با گوگل'):'')+yn('login.github','ورود با گیت‌هاب؟')+(C.login.github?T('login.hurl','لینک ورود با گیت‌هاب'):'')+'<p class="hint">توجه: سایت‌ساز فقط ظاهر ورود را می‌سازد. برای اینکه ورود واقعاً کار کند، آدرس یک سرویس احراز هویت (مثل Firebase، Supabase یا Auth0) را اینجا بگذارید. تا آن موقع، دکمه‌ها پیام «هنوز وصل نشده» نشان می‌دهند.</p>':'')],
-['تماس','',()=>yn('contact.on','فرم تماس باشد؟')+(C.contact.on?T('contact.title','عنوان بخش')+T('contact.email','ایمیل (پیام‌ها به این آدرس می‌روند)')+T('contact.phone','تلفن'):'')],
-['پایین صفحه','',()=>yn('footer.on','فوتر باشد؟')+(C.footer.on?T('footer.address','آدرس')+T('footer.instagram','آیدی اینستاگرام')+T('footer.telegram','آیدی تلگرام')+T('footer.copy','متن کپی‌رایت'):'')],
-['ترتیب و دریافت','ترتیب بخش‌ها را تنظیم کنید و سایت را دانلود کنید.',()=>`<h3>ترتیب بخش‌ها</h3>${C.order.map((k,i)=>`<div class="ord"><span>${L[k]}</span><span><button data-mv="${i},-1">▲</button> <button data-mv="${i},1">▼</button></span></div>`).join('')}<h3>دانلود</h3><button class="pri" id="ex">دانلود سایت (ZIP)</button> <small id="st"></small>`]];
+['ورود به سایت','دکمهٔ «ورود» که یک پنجره باز می‌کند.',()=>yn('login.on','قابلیت ورود (لاگین) می‌خواهید؟')+(C.login.on?T('login.title','عنوان پنجره')+yn('login.email','ورود با ایمیل و رمز عبور؟')+(C.login.email?T('login.eurl','آدرس سرویس ورود (action فرم)'):'')+yn('login.google','ورود با گوگل؟')+(C.login.google?T('login.gurl','لینک ورود با گوگل'):'')+yn('login.github','ورود با گیت‌هاب؟')+(C.login.github?T('login.hurl','لینک ورود با گیت‌هاب'):'')+'<p class="hint">توجه: سایت‌ساز فقط ظاهر ورود را می‌سازد. برای اینکه ورود واقعاً کار کند، آدرس یک سرویس احراز هویت (مثل Firebase، Supabase یا Auth0) را اینجا بگذارید.</p>':'')],
+['تماس','فرم تماس و راه‌های ارتباطی.',()=>yn('contact.on','فرم تماس باشد؟')+(C.contact.on?T('contact.title','عنوان بخش')+T('contact.email','ایمیل (پیام‌ها به این آدرس می‌روند)')+T('contact.phone','تلفن')+T('contact.endpoint','آدرس سرویس فرم (Formspree یا Web3Forms) — اختیاری')+'<p class="hint">اگر آدرس سرویس فرم را وارد کنید، پیام‌ها واقعاً ارسال می‌شوند. اگر خالی باشد، فرم از طریق ایمیل پیش‌فرض سیستم باز می‌شود.</p>':'')],
+['پایین صفحه','آدرس، شبکه‌های اجتماعی و کپی‌رایت.',()=>yn('footer.on','فوتر باشد؟')+(C.footer.on?T('footer.address','آدرس')+T('footer.instagram','آیدی اینستاگرام')+T('footer.telegram','آیدی تلگرام')+T('footer.whatsapp','شماره واتساپ (با کد کشور، مثل 989121234567)')+T('footer.linkedin','لینک لینکدین')+T('footer.twitter','آیدی توییتر/X')+T('footer.youtube','لینک یوتیوب')+T('footer.email','ایمیل تماس')+T('footer.copy','متن کپی‌رایت'):'')],
+['ابزارک‌ها','دکمه‌های شناور و جلوه‌های حرکتی.',()=>yn('extras.wa','دکمه‌ی شناور واتساپ؟')+(C.extras.wa&&!C.footer.whatsapp?'<p class="hint">شماره‌ی واتساپ را در مرحله‌ی «پایین صفحه» وارد کنید.</p>':'')+yn('extras.top','دکمه‌ی بازگشت به بالا؟')+yn('extras.prog','نوار پیشرفت اسکرول بالای صفحه؟')+yn('extras.anim','انیمیشن ورود بخش‌ها هنگام اسکرول؟')],
+['سئو و اشتراک‌گذاری','اطلاعاتی که در گوگل و شبکه‌های اجتماعی نمایش داده می‌شود.',()=>T('seo.desc','توضیح سایت (meta description) — یک یا دو جمله',1)+T('seo.keywords','کلمات کلیدی (با کاما جدا کنید)')+`<h3>تصویر اشتراک‌گذاری (og:image)</h3>${C.seo.og?`<div class="ord"><img class="th" src="${C.seo.og}" alt=""><button data-rm="og">حذف عکس</button></div>`:''}<label>${C.seo.og?'تغییر تصویر':'انتخاب تصویر (۱۲۰۰×۶۳۰ پیکسل)'}<input type="file" accept="image/*" data-up="og"></label><h3>فاوآیکون</h3>${C.seo.favicon?`<div class="ord"><img class="th" src="${C.seo.favicon}" alt=""><button data-rm="fav">حذف</button></div>`:''}<label>${C.seo.favicon?'تغییر':'انتخاب (۳۲×۳۲ یا ۶۴×۶۴ پیکسل)'}<input type="file" accept="image/*" data-up="fav"></label>`],
+['ترتیب و دریافت','ترتیب بخش‌ها را تنظیم کنید و سایت را دانلود کنید.',()=>`<h3>ترتیب بخش‌ها</h3>${C.order.map((k,i)=>`<div class="ord"><span>${L[k]}</span><span><button data-mv="${i},-1">▲</button> <button data-mv="${i},1">▼</button></span></div>`).join('')}<h3>دانلود</h3><button class="pri" id="ex">دانلود سایت (ZIP)</button> <small id="st"></small><h3>مدیریت پروژه</h3><button id="rst">پاک‌کردن و شروع از نو</button><p class="hint">تغییرات شما خودکار در همین مرورگر ذخیره می‌شوند.</p>`]];
 
-// آیکون‌های خطی (SVG) به جای ایموجی — سبک Lucide/Feather
+/* آیکون‌های خطی (SVG) */
 const svg=(p,sz=22)=>`<svg viewBox="0 0 24 24" width="${sz}" height="${sz}" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${p}</svg>`;
 
-// مسیرهای SVG برای ۱۳ مرحله (به ترتیب steps)
 const SP=[
- // 0 نام سایت – برچسب
  '<path d="M3 4h8l10 10-8 8L3 12z"/><circle cx="7.5" cy="8.5" r="1.2"/>',
- // 1 ظاهر سایت – پالت رنگ
  '<path d="M12 3a9 9 0 100 18c1.5 0 2-1 1.5-2.2-.5-1.3.3-2.3 1.6-2.3H17a4 4 0 004-4c0-5-4-9.5-9-9.5z"/><circle cx="7.5" cy="11" r="1"/><circle cx="10" cy="7" r="1"/><circle cx="15" cy="7.5" r="1"/>',
- // 2 منوی بالا – چیدمان
  '<rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M7 14h6"/>',
- // 3 بخش اصلی – تصویر
  '<rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="1.5"/><path d="M3 17l5-5 4 4 3-3 6 6"/>',
- // 4 پنل تبلیغات – بلندگو
  '<path d="M3 11v3a1 1 0 001 1h2l7 4V6L6 10H4a1 1 0 00-1 1z"/><path d="M17 9a4 4 0 010 6"/>',
- // 5 درباره ما – اطلاعات
  '<circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/>',
- // 6 خدمات و محصولات – کیف خرید
  '<path d="M5 8h14l-1 12H6z"/><path d="M9 8a3 3 0 016 0"/>',
- // 7 گالری – شبکه
  '<rect x="3" y="3" width="8" height="8" rx="1"/><rect x="13" y="3" width="8" height="8" rx="1"/><rect x="3" y="13" width="8" height="8" rx="1"/><rect x="13" y="13" width="8" height="8" rx="1"/>',
- // 8 اسلایدر – فیلم
  '<rect x="6" y="5" width="12" height="14" rx="2"/><path d="M3 9v6M21 9v6"/>',
- // 9 ورود – قفل
  '<rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 018 0v3"/>',
- // 10 تماس – پاکت
  '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/>',
- // 11 پایین صفحه – فوتر
  '<rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 15h18"/>',
- // 12 ترتیب و دریافت – دانلود
+ '<path d="M9 3a2 2 0 014 0v2h3a2 2 0 012 2v3h-2a2 2 0 100 4h2v3a2 2 0 01-2 2h-3v-2a2 2 0 10-4 0v2H6a2 2 0 01-2-2v-3h2a2 2 0 100-4H4V7a2 2 0 012-2h3z"/>',
+ '<circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/>',
  '<path d="M12 4v11M7 11l5 5 5-5M5 20h14"/>'
 ];
-
-// مسیرهای SVG برای آیکون گروه‌ها
 const GI=[
- // 0 طراحی و ظاهر – پالت
  '<path d="M12 3a9 9 0 100 18c1.5 0 2-1 1.5-2.2-.5-1.3.3-2.3 1.6-2.3H17a4 4 0 004-4c0-5-4-9.5-9-9.5z"/><circle cx="7.5" cy="11" r="1"/><circle cx="10" cy="7" r="1"/><circle cx="15" cy="7.5" r="1"/>',
- // 1 محتوای سایت – لایه‌ها
  '<path d="M12 3l9 5-9 5-9-5z"/><path d="M3 13l9 5 9-5M3 17l9 5 9-5"/>',
- // 2 امکانات اضافی – جرقه
  '<path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/><path d="M19 16l.7 2 2 .7-2 .7-.7 2-.7-2-2-.7 2-.7z"/>',
- // 3 ناوبری و ارتباط – قطبنما
  '<circle cx="12" cy="12" r="9"/><path d="M16.2 7.8l-2.4 6-6 2.4 2.4-6z"/>',
- // 4 انتشار و خروجی – دانلود
  '<path d="M12 4v11M7 11l5 5 5-5M5 20h14"/>'
 ];
-
 const NAV_GROUPS=[
  {title:'طراحی و ظاهر',icon:GI[0],steps:[0,1]},
  {title:'محتوای سایت',icon:GI[1],steps:[3,5,6,7]},
- {title:'امکانات اضافی',icon:GI[2],steps:[4,8,9]},
+ {title:'امکانات اضافی',icon:GI[2],steps:[4,8,9,12]},
  {title:'ناوبری و ارتباط',icon:GI[3],steps:[2,10,11]},
- {title:'انتشار و خروجی',icon:GI[4],steps:[12]}
+ {title:'انتشار و خروجی',icon:GI[4],steps:[13,14]}
 ];
 const groupForStep=i=>Math.max(0,NAV_GROUPS.findIndex(g=>g.steps.includes(i)));
 let s=0,expandedGroup=0;
-function rail(){
- const activeGroup=groupForStep(s);
- if(!Number.isInteger(expandedGroup))expandedGroup=activeGroup;
- $('#rail').innerHTML=NAV_GROUPS.map((g,gi)=>{
-  const open=gi===expandedGroup;
-  const containsActive=g.steps.includes(s);
+function rail(filter){
+ const q=(filter||'').toLowerCase().trim();
+ $('#rail').querySelectorAll('.nav-group').forEach(n=>n.remove());
+ const html=NAV_GROUPS.map((g,gi)=>{
+  const gs=q?g.steps.filter(i=>(steps[i][0]+' '+(steps[i][1]||'')).toLowerCase().includes(q)):g.steps;
+  if(q&&!gs.length)return '';
+  const open=q?true:(gi===expandedGroup);
+  const containsActive=gs.includes(s);
   return `<section class="nav-group ${open?'open':''} ${containsActive?'has-active':''}">
    <button type="button" class="group-toggle" data-group="${gi}" aria-expanded="${open}" aria-controls="group-items-${gi}">
     <span class="group-icon" aria-hidden="true">${svg(g.icon,17)}</span><span class="group-name">${g.title}</span><span class="chev" aria-hidden="true">${svg('<path d="M6 9l6 6 6-6"/>',14)}</span>
    </button>
    <div class="group-items" id="group-items-${gi}" ${open?'':'hidden'}>
-    ${g.steps.map(i=>`<button type="button" class="step-link ${i===s?'on':''}" data-go="${i}" ${i===s?'aria-current="step"':''}><span class="step-icon" aria-hidden="true">${svg(SP[i]||'',18)}</span><span>${steps[i][0]}</span><span class="step-num">${i+1}</span></button>`).join('')}
+    ${gs.map(i=>`<button type="button" class="step-link ${i===s?'on':''}" data-go="${i}" ${i===s?'aria-current="step"':''}><span class="step-icon" aria-hidden="true">${svg(SP[i]||'',18)}</span><span>${steps[i][0]}</span><span class="step-num">${i+1}</span></button>`).join('')}
    </div>
   </section>`;
  }).join('');
+ $('#rail').insertAdjacentHTML('beforeend',html);
 }
-function show(){const [t,h,f]=steps[s];rail();$('#cnt').textContent=`مرحله ${s+1} از ${steps.length}`;$('#bar i').style.width=(s+1)/steps.length*100+'%';$('#ttl').textContent=t;$('#hnt').textContent=h;$('#body').innerHTML=f();$('#bk').style.visibility=s?'visible':'hidden';$('#nx').style.visibility=s<steps.length-1?'visible':'hidden'}
+function show(){const [t,h,f]=steps[s];rail($('#srch').value);$('#cnt').textContent=`مرحله ${s+1} از ${steps.length}`;$('#bar i').style.width=(s+1)/steps.length*100+'%';$('#ttl').textContent=t;$('#hnt').textContent=h;$('#body').innerHTML=f();$('#bk').style.visibility=s?'visible':'hidden';$('#nx').style.visibility=s<steps.length-1?'visible':'hidden';updUR()}
 const lk=u=>{u=(u||'#').trim()||'#';if(!/^(#|\/|mailto:|tel:|[a-z]+:\/\/)/i.test(u))u='https://'+u;return`href="${esc(u)}"${/^https?:/.test(u)?' target="_blank" rel="noopener"':''}`};
 const fm=s=>String(s).replace(/[۰-۹]/g,d=>'۰۱۲۳۴۵۶۷۸۹'.indexOf(d)).replace(/\d{4,}/g,n=>n.replace(/\B(?=(\d{3})+(?!\d))/g,','));
 const lum=h=>{const n=parseInt(h.slice(1),16),f=v=>{v/=255;return v<=.03928?v/12.92:((v+.055)/1.055)**2.4};return .2126*f(n>>16)+.7152*f(n>>8&255)+.0722*f(n&255)};
 const lt=h=>{if(lum(h)>.25)return h;const n=parseInt(h.slice(1),16),m=v=>Math.round(v+(255-v)*.6);return'#'+[n>>16,n>>8&255,n&255].map(m).map(v=>v.toString(16).padStart(2,'0')).join('')};
-function parts(exp){const o=C,r={sharp:'0',soft:'10px',round:'24px'}[o.radius],F={tahoma:'Tahoma,Arial,sans-serif',system:'system-ui,"Segoe UI",Arial,sans-serif',serif:'"Times New Roman",Georgia,serif'}[o.font];
+
+const FONTS={tahoma:'Tahoma,Arial,sans-serif',vazir:'Vazirmatn,Tahoma,sans-serif',noto:'"Noto Sans Arabic",Tahoma,sans-serif',amiri:'Amiri,serif',lalezar:'Lalezar,Tahoma,sans-serif',system:'system-ui,"Segoe UI",Arial,sans-serif',serif:'"Times New Roman",Georgia,serif'};
+
+function parts(exp){const o=C,r={sharp:'0',soft:'10px',round:'24px'}[o.radius],F=FONTS[o.font]||FONTS.tahoma;
 const files=[],src=d=>{if(!exp)return d;const n='images/photo-'+(files.length+1)+'.jpg';files.push([n,d]);return n};
 const adB=a=>{const im=a.img?`<img src="${src(a.img)}" alt="${esc(a.t)}">`:'';return(a.link&&im?`<a ${lk(a.link)}>${im}</a>`:im)+(a.t?`<h3>${esc(a.t)}</h3>`:'')+(a.d?`<p>${esc(a.d)}</p>`:'')+(a.bt?`<a class="btn" ${lk(a.link)}>${esc(a.bt)}</a>`:'')};
 const slS=s=>{const n=s.items.length;if(!n)return'';const its=s.items.map(it=>{const u=it.img?src(it.img):'',t=it.link?'a':'div';return`<${t} class="tile"${it.link?' '+lk(it.link):''}${u?` style="background-image:url('${u}')"`:''}><span class="tt">${esc(it.t)}</span></${t}>`}),k=s.mv?Math.max(1,Math.ceil(7/n)):1,all=[...its];for(let i=1;i<(s.mv?2*k:1);i++)all.push(...its.map(x=>x.replace('class="tile"','class="tile" aria-hidden="true" tabindex="-1"')));return(s.title?`<h2>${esc(s.title)}</h2>`:'')+`<div class="sl${s.place==='side'?' v':''}${s.mv?'':' st'}"><div class="tr${s.dir==='ltr'?' rv':''}" style="--d:${(+s.spd||4)*n*k}s">${all.join('')}</div></div>`};
 const on=o.order.filter(k=>o[k].on),links=on.filter(k=>k!=='hero'&&k!=='ads').map(k=>`<a href="#${k}">${esc(o[k].title)}</a>`).join(''),dr=o.nav.on&&o.nav.style==='drawer',dk=o.nav.on&&o.nav.dark;
+const ac=o.extras.anim?' anim':'';
 const sec={
-hero:()=>`<section id="hero" class="hero ${o.hero.layout}${o.hero.layout==='cover'&&o.hero.fix?' fix':''}"${o.hero.layout==='cover'&&o.hero.img?` style="background-image:url('${src(o.hero.img)}')"`:''}><div><h1>${esc(o.hero.title)}</h1><p>${esc(o.hero.text)}</p><a class="btn" ${lk(o.hero.link)}>${esc(o.hero.btn)}</a></div>${o.hero.img&&o.hero.layout!=='cover'?`<!-- عکس بخش اصلی: برای عوض‌کردنش، فایل عکس در پوشه images را با عکس دیگری با همین اسم جایگزین کنید -->\n<img class="pic" src="${src(o.hero.img)}" alt="${esc(o.hero.title)}">`:o.hero.layout==='side'?'<div class="art"></div>':''}</section>`,
-about:()=>`<section id="about"><h2>${esc(o.about.title)}</h2><p>${esc(o.about.text)}</p></section>`,
-services:()=>`<section id="services"><h2>${esc(o.services.title)}</h2>\n<!-- عکس‌های این بخش در پوشه images هستند؛ برای جایگزینی، عکس جدید را با همان اسم بگذارید -->\n<div class="grid" style="--n:${+o.services.cols}">${o.services.list.map(m=>`<article class="item ${m.pos}"><div class="tx"><h3>${esc(m.t)}</h3>${m.d?`<p>${esc(m.d)}</p>`:''}${m.p?`<strong class="price">${esc(fm(m.p))}</strong>`:''}${m.bon?`<p><a class="btn" ${lk(m.bl)}>${esc(m.bt)}</a></p>`:''}</div>${m.imgs.length?`<div class="pics">${m.imgs.map(d=>`<img src="${src(d)}" alt="${esc(m.t)}" loading="lazy">`).join('')}</div>`:''}</article>`).join('')}</div></section>`,
-contact:()=>`<section id="contact"><h2>${esc(o.contact.title)}</h2>${o.contact.phone?`<p>تلفن: <span dir="ltr">${esc(o.contact.phone)}</span></p>`:''}<form action="mailto:${esc(o.contact.email)}" method="post" enctype="text/plain"><input name="name" placeholder="نام" aria-label="نام"><input name="email" type="email" placeholder="ایمیل" aria-label="ایمیل"><textarea name="message" placeholder="پیام" aria-label="پیام"></textarea><button class="btn" type="submit">ارسال</button></form></section>`,
-gallery:()=>`<section id="gallery"><h2>${esc(o.gallery.title)}</h2>\n<!-- گالری: عکس‌ها در پوشه images هستند؛ برای جایگزینی، عکس جدید را با همان اسم بگذارید -->\n<div class="gal" style="--n:${+o.gallery.cols}">${o.gallery.imgs.map(m=>`<img src="${src(m.d)}" alt="${esc(m.a)}" loading="lazy">`).join('')}</div></section>`,
-ads:()=>{const I=o.ads.list.filter(a=>a.mode==='inline');return I.length?`<section id="ads"><!-- تبلیغات داخل صفحه: عکس‌ها در پوشه images هستند؛ برای جایگزینی، عکس جدید را با همان اسم بگذارید -->${I.map(a=>`<div class="ad">${adB(a)}</div>`).join('')}</section>`:''}};
-const f=o.footer,ft=f.on?`<footer>${f.address?`<p>${esc(f.address)}</p>`:''}<p>${f.instagram?`<a href="https://instagram.com/${esc(f.instagram)}">اینستاگرام</a> `:''}${f.telegram?`<a href="https://t.me/${esc(f.telegram)}">تلگرام</a>`:''}</p><p>${esc(f.copy)}</p></footer>`:'';
+hero:()=>`<section id="hero" class="hero ${o.hero.layout}${o.hero.layout==='cover'&&o.hero.fix?' fix':''}"${o.hero.layout==='cover'&&o.hero.img?` style="background-image:url('${src(o.hero.img)}')"`:''}><div><h1>${esc(o.hero.title)}</h1><p>${esc(o.hero.text)}</p><a class="btn" ${lk(o.hero.link)}>${esc(o.hero.btn)}</a></div>${o.hero.img&&o.hero.layout!=='cover'?`<img class="pic" src="${src(o.hero.img)}" alt="${esc(o.hero.title)}">`:o.hero.layout==='side'?'<div class="art"></div>':''}</section>`,
+about:()=>`<section id="about" class="${ac.trim()}"><h2>${esc(o.about.title)}</h2><p>${esc(o.about.text)}</p></section>`,
+services:()=>`<section id="services" class="${ac.trim()}"><h2>${esc(o.services.title)}</h2><div class="grid" style="--n:${+o.services.cols}">${o.services.list.map(m=>`<article class="item ${m.pos}"><div class="tx"><h3>${esc(m.t)}</h3>${m.d?`<p>${esc(m.d)}</p>`:''}${m.p?`<strong class="price">${esc(fm(m.p))}</strong>`:''}${m.bon?`<p><a class="btn" ${lk(m.bl)}>${esc(m.bt)}</a></p>`:''}</div>${m.imgs.length?`<div class="pics">${m.imgs.map(d=>`<img src="${src(d)}" alt="${esc(m.t)}" loading="lazy">`).join('')}</div>`:''}</article>`).join('')}</div></section>`,
+contact:()=>{const ep=o.contact.endpoint,act=ep?`action="${esc(ep)}" data-fs="1"`:`action="mailto:${esc(o.contact.email)}" enctype="text/plain"`;return`<section id="contact" class="${ac.trim()}"><h2>${esc(o.contact.title)}</h2>${o.contact.phone?`<p>تلفن: <span dir="ltr">${esc(o.contact.phone)}</span></p>`:''}${o.contact.email&&!ep?`<p>ایمیل: <span dir="ltr">${esc(o.contact.email)}</span></p>`:''}<form ${act} method="post"><input name="name" placeholder="نام" aria-label="نام" required><input name="email" type="email" placeholder="ایمیل" aria-label="ایمیل" required><textarea name="message" placeholder="پیام" aria-label="پیام" required></textarea><button class="btn" type="submit">ارسال</button></form></section>`},
+gallery:()=>`<section id="gallery" class="${ac.trim()}"><h2>${esc(o.gallery.title)}</h2><div class="gal" style="--n:${+o.gallery.cols}">${o.gallery.imgs.map(m=>`<img src="${src(m.d)}" alt="${esc(m.a)}" loading="lazy">`).join('')}</div></section>`,
+ads:()=>{const I=o.ads.list.filter(a=>a.mode==='inline');return I.length?`<section id="ads">${I.map(a=>`<div class="ad">${adB(a)}</div>`).join('')}</section>`:''}};
+const f=o.footer,social=[f.instagram?`<a href="https://instagram.com/${esc(f.instagram)}" target="_blank" rel="noopener">اینستاگرام</a>`:'',f.telegram?`<a href="https://t.me/${esc(f.telegram)}" target="_blank" rel="noopener">تلگرام</a>`:'',f.whatsapp?`<a href="https://wa.me/${esc(f.whatsapp)}" target="_blank" rel="noopener">واتساپ</a>`:'',f.linkedin?`<a href="${lk(f.linkedin).replace(/^href="/,'').replace(/"$/,'')}" target="_blank" rel="noopener">لینکدین</a>`:'',f.twitter?`<a href="https://x.com/${esc(f.twitter)}" target="_blank" rel="noopener">توییتر</a>`:'',f.youtube?`<a href="${lk(f.youtube).replace(/^href="/,'').replace(/"$/,'')}" target="_blank" rel="noopener">یوتیوب</a>`:'',f.email?`<a href="mailto:${esc(f.email)}">ایمیل</a>`:''].filter(Boolean).join(' · ');
+const ft=f.on?`<footer>${f.address?`<p>${esc(f.address)}</p>`:''}${social?`<p>${social}</p>`:''}<p>${esc(f.copy)}</p></footer>`:'';
 const fullS=o.sliders.filter(s=>s.place!=='side'),sideS=o.sliders.filter(s=>s.place==='side'),aft=s=>on.includes(s.after)?s.after:on[on.length-1];
 const mainH=on.map(k=>sec[k]()+fullS.filter(s=>aft(s)===k).map(s=>`<section class="slw">${slS(s)}</section>`).join('')).join('\n');
 const bodyH=sideS.length?`<div class="wrap${sideS[0].side==='right'?' ar':''}"><div class="main">${mainH}</div><aside>${sideS.map(s=>`<div class="sw">${slS(s)}</div>`).join('')}</aside></div>`:mainH;
 const lg=o.login,sb=(u,t)=>u?`<a class="btn sb" ${lk(u)}>${t}</a>`:`<button class="btn sb" type="button" data-nu>${t}</button>`;
 const lgf=lg.on&&!o.nav.on?'<div class="tools lgf"><button id="lg">ورود</button></div>':'';
-const lgm=lg.on?`<div class="lgm" id="lgm" hidden>\n<!-- ورود: برای فعال‌سازی، آدرس سرویس ورود را در action فرم یا href دکمه‌ها بگذارید -->\n<div class="box"><button class="x" aria-label="بستن">×</button><h3>${esc(lg.title)}</h3>${lg.email?`<form ${lg.eurl?`action="${esc(lg.eurl)}" `:''}method="post"><input type="email" name="email" placeholder="ایمیل" aria-label="ایمیل" required><input type="password" name="password" placeholder="رمز عبور" aria-label="رمز عبور" required><button class="btn" type="submit">ورود</button></form>`:''}${lg.email&&(lg.google||lg.github)?'<p class="or">یا</p>':''}${lg.google?sb(lg.gurl,'ورود با گوگل'):''}${lg.github?sb(lg.hurl,'ورود با گیت‌هاب'):''}<p class="note" hidden>این بخش هنوز به سرویس ورود وصل نشده است.</p></div></div>`:'';
+const lgm=lg.on?`<div class="lgm" id="lgm" hidden><div class="box"><button class="x" aria-label="بستن">×</button><h3>${esc(lg.title)}</h3>${lg.email?`<form ${lg.eurl?`action="${esc(lg.eurl)}" `:''}method="post"><input type="email" name="email" placeholder="ایمیل" aria-label="ایمیل" required><input type="password" name="password" placeholder="رمز عبور" aria-label="رمز عبور" required><button class="btn" type="submit">ورود</button></form>`:''}${lg.email&&(lg.google||lg.github)?'<p class="or">یا</p>':''}${lg.google?sb(lg.gurl,'ورود با گوگل'):''}${lg.github?sb(lg.hurl,'ورود با گیت‌هاب'):''}<p class="note" hidden>این بخش هنوز به سرویس ورود وصل نشده است.</p></div></div>`:'';
 const fl=o.ads.on?o.ads.list.filter(a=>a.mode!=='inline').map(a=>`<div class="fad ${a.mode} ${a.side}" hidden data-delay="${exp?+a.delay||0:0}"><div class="box"><button class="x" aria-label="بستن">×</button>${adB(a)}</div></div>`).join(''):'';
 const nav=o.nav.on?`<header class="nav ${dr?'drw':''}"><a class="brand" href="#">${esc(o.name)}</a>${dr?'':`<nav class="links">${links}</nav>`}<div class="tools">${o.login.on?'<button id="lg">ورود</button>':''}${dk?'<button id="theme" aria-label="تغییر حالت">◐</button>':''}<button id="menu" aria-label="منو">☰</button></div></header><aside id="drawer"><nav>${links}</nav></aside>`:'';
+/* ویجت‌ها */
+const waIcon='<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.5 3.5A11.8 11.8 0 0012 0C5.4 0 .1 5.4.1 12c0 2.1.5 4.1 1.6 5.9L0 24l6.3-1.6c1.7.9 3.7 1.4 5.7 1.4 6.6 0 12-5.4 12-12 0-3.2-1.2-6.2-3.5-8.3zM12 21.5c-1.8 0-3.5-.5-5-1.4l-.4-.2-3.7 1 1-3.6-.2-.4c-1-1.6-1.5-3.4-1.5-5.3 0-5.5 4.5-10 10-10 2.7 0 5.2 1 7.1 2.9 1.9 1.9 2.9 4.4 2.9 7.1-.1 5.4-4.6 9.9-10.2 9.9zm5.5-7.4c-.3-.2-1.8-.9-2.1-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-1 1.2-.2.2-.4.2-.7.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6.1-.1.3-.4.5-.5.2-.2.2-.3.4-.5.1-.2.1-.4 0-.5-.1-.1-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.3 5.2 4.6.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.4.3-.7.3-1.3.2-1.4 0-.2-.2-.3-.4-.4z"/></svg>';
+const widgets=`${o.extras.prog?'<div class="sprog" id="sprog"></div>':''}${o.extras.wa&&f.whatsapp?`<a class="wabtn" href="https://wa.me/${esc(f.whatsapp)}" target="_blank" rel="noopener" aria-label="واتساپ">${waIcon}</a>`:''}${o.extras.top?'<button class="totop" id="totop" aria-label="بازگشت به بالا">↑</button>':''}`;
+/* سئو */
+const seo=o.seo,desc=seo.desc||o.tag,og=seo.og?src(seo.og):'',fav=seo.favicon?src(seo.favicon):'';
 const css=`/* رنگ و ظاهر کل سایت از این چند متغیر کنترل می‌شود */
 :root{--c:${o.color};--ct:${o.color};--bt:${lum(o.color)>.5?'#111':'#fff'};--bg:#fff;--fg:#1c1c1e;--mu:#6b7280;--cd:#f3f4f6;--r:${r}}
 [data-theme=dark]{--ct:${lt(o.color)};--bg:#121316;--fg:#f1f1f3;--mu:#a1a1aa;--cd:#1e2025}
@@ -217,46 +254,76 @@ footer{padding:32px 5%;background:var(--cd);color:var(--mu)}footer a{color:var(-
 .slw{padding:32px 5%}.wrap{display:grid;grid-template-columns:1fr 300px;gap:24px;padding:0 5%;align-items:start}.wrap.ar{grid-template-columns:300px 1fr}.wrap.ar aside{order:-1}.main{min-width:0}.wrap section{padding-inline:0}.wrap aside{padding-top:64px}
 #lg{width:auto;padding:0 16px;height:40px;font:inherit;font-size:.9rem;background:var(--c);color:var(--bt);border:1px solid var(--ct)}.lgf{position:fixed;top:12px;left:12px;z-index:6}
 .lgm{position:fixed;inset:0;z-index:20;display:grid;place-items:center;background:#0008}.lgm[hidden]{display:none}.lgm .box{position:relative;width:min(400px,calc(100vw - 32px));padding:36px 18px 18px;background:var(--bg);color:var(--fg);border:1px solid var(--cd);border-radius:var(--r);box-shadow:0 8px 30px #0005}.lgm h3{margin:0 0 14px;color:var(--ct)}.lgm form{max-width:none}.lgm .btn{display:block;width:100%;text-align:center}.sb{margin-top:10px;background:var(--cd);color:var(--fg)}.or{text-align:center;color:var(--mu);margin:12px 0 0}.note{color:var(--mu);font-size:.9rem;margin-top:12px}
-#ads{display:grid;gap:12px;padding:16px 5%}.ad{padding:16px;border-radius:var(--r);background:var(--cd)}.fad{position:fixed;z-index:9}.fad[hidden]{display:none}.fad .box{position:relative;padding:36px 14px 14px;background:var(--bg);color:var(--fg);border:1px solid var(--cd);border-radius:var(--r);box-shadow:0 8px 30px #0005}.fad.corner{bottom:16px;width:min(300px,calc(100vw - 32px))}.fad.corner.left{left:16px}.fad.corner.right{right:16px}.fad.popup{inset:0;display:grid;place-items:center;background:#0008}.fad.popup .box{width:min(420px,calc(100vw - 32px));max-height:90vh;overflow:auto}.fad img,.ad img{display:block;width:100%;border-radius:var(--r);margin-bottom:8px}.fad h3,.ad h3{margin:4px 0;color:var(--ct)}.fad p,.ad p{margin:4px 0 10px}.x{position:absolute;top:6px;left:6px;width:30px;height:30px;border:0;border-radius:50%;background:var(--cd);color:var(--fg);font-size:18px;cursor:pointer}.pic{width:100%;border-radius:var(--r);object-fit:cover}.hero.center .pic{max-width:720px}.gal{display:grid;gap:12px;grid-template-columns:repeat(var(--n,3),1fr)}.gal img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:var(--r)}\n@media(max-width:700px){.hero.side{grid-template-columns:1fr}.gal{grid-template-columns:repeat(2,1fr)}.grid{grid-template-columns:1fr}.item.side{flex-direction:column}.item.side .pics{width:100%}.links{display:none}#menu{display:block}section{padding:40px 5%}.hero{min-height:auto}.wrap,.wrap.ar{grid-template-columns:1fr}.wrap.ar aside{order:0}.wrap aside{padding-top:0}}`;
+#ads{display:grid;gap:12px;padding:16px 5%}.ad{padding:16px;border-radius:var(--r);background:var(--cd)}.fad{position:fixed;z-index:9}.fad[hidden]{display:none}.fad .box{position:relative;padding:36px 14px 14px;background:var(--bg);color:var(--fg);border:1px solid var(--cd);border-radius:var(--r);box-shadow:0 8px 30px #0005}.fad.corner{bottom:16px;width:min(300px,calc(100vw - 32px))}.fad.corner.left{left:16px}.fad.corner.right{right:16px}.fad.popup{inset:0;display:grid;place-items:center;background:#0008}.fad.popup .box{width:min(420px,calc(100vw - 32px));max-height:90vh;overflow:auto}.fad img,.ad img{display:block;width:100%;border-radius:var(--r);margin-bottom:8px}.fad h3,.ad h3{margin:4px 0;color:var(--ct)}.fad p,.ad p{margin:4px 0 10px}.x{position:absolute;top:6px;left:6px;width:30px;height:30px;border:0;border-radius:50%;background:var(--cd);color:var(--fg);font-size:18px;cursor:pointer}.pic{width:100%;border-radius:var(--r);object-fit:cover}.hero.center .pic{max-width:720px}.gal{display:grid;gap:12px;grid-template-columns:repeat(var(--n,3),1fr)}.gal img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:var(--r);cursor:zoom-in}
+.wabtn{position:fixed;bottom:20px;left:20px;width:54px;height:54px;border-radius:50%;background:#25d366;color:#fff;display:grid;place-items:center;text-decoration:none;box-shadow:0 8px 24px #25d36666;z-index:8;transition:transform .2s}.wabtn:hover{transform:scale(1.08)}.wabtn svg{width:28px;height:28px}
+.totop{position:fixed;bottom:20px;right:20px;width:44px;height:44px;border:1px solid var(--cd);border-radius:50%;background:var(--bg);color:var(--fg);font-size:18px;cursor:pointer;box-shadow:0 4px 16px #0002;z-index:8;display:none}.totop.on{display:grid;place-items:center}
+.sprog{position:fixed;top:0;left:0;right:0;height:3px;background:var(--ct);transform-origin:right;transform:scaleX(0);z-index:999;transition:transform .1s}
+.anim{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}.anim.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.anim{opacity:1;transform:none}}
+.lbx{position:fixed;inset:0;background:#000c;display:grid;place-items:center;z-index:60;cursor:zoom-out}.lbx img{max-width:92vw;max-height:92vh;border-radius:var(--r);box-shadow:0 20px 60px #0008}
+.msg{margin-top:12px;padding:10px;border-radius:var(--r);background:#dcfce7;color:#166534;font-size:.9rem}[data-theme=dark] .msg{background:#14532d;color:#bbf7d0}.err{background:#fee2e2;color:#991b1b}[data-theme=dark] .err{background:#7f1d1d;color:#fecaca}
+@media(max-width:700px){.hero.side{grid-template-columns:1fr}.gal{grid-template-columns:repeat(2,1fr)}.grid{grid-template-columns:1fr}.item.side{flex-direction:column}.item.side .pics{width:100%}.links{display:none}#menu{display:block}section{padding:40px 5%}.hero{min-height:auto}.wrap,.wrap.ar{grid-template-columns:1fr}.wrap.ar aside{order:0}.wrap aside{padding-top:0}}`;
 const js=(o.nav.on?`const d=document.documentElement,m=document.getElementById('menu'),t=document.getElementById('theme');
 if(m)m.onclick=()=>document.body.classList.toggle('open');
 if(t)t.onclick=()=>d.dataset.theme=d.dataset.theme==='dark'?'light':'dark';
-document.querySelectorAll('#drawer a').forEach(a=>a.onclick=()=>document.body.classList.remove('open'));`:'')+(fl?`document.querySelectorAll('.fad').forEach(a=>{setTimeout(()=>a.hidden=false,(+a.dataset.delay||0)*1000);a.querySelector('.x').onclick=()=>a.remove();if(a.classList.contains('popup'))a.onclick=e=>{if(e.target===a)a.remove()}});`:'')+(o.login.on?`const lm=document.getElementById('lgm'),lb=document.getElementById('lg');if(lb&&lm){lb.onclick=()=>lm.hidden=false;lm.querySelector('.x').onclick=()=>lm.hidden=true;lm.onclick=e=>{if(e.target===lm)lm.hidden=true};const nt=lm.querySelector('.note'),fm=lm.querySelector('form');lm.querySelectorAll('[data-nu]').forEach(b=>b.onclick=()=>nt.hidden=false);if(fm)fm.onsubmit=e=>{if(!fm.getAttribute('action')){e.preventDefault();nt.hidden=false}}}`:'');
-return{css,js,files,body:nav+lgf+bodyH+ft+fl+lgm}}
-function page(inl,P){const p=P||parts();return`<!doctype html>\n<html lang="fa" dir="rtl" data-theme="${C.theme}">\n<head>\n<meta charset="utf-8">\n<meta name="viewport" content="width=device-width,initial-scale=1">\n<title>${esc(C.name)} — ${esc(C.tag)}</title>\n${inl?`<style>${p.css}</style>`:'<link rel="stylesheet" href="css/style.css">'}\n</head>\n<body>\n${p.body}\n${p.js?(inl?`<script>${p.js}<\/script>`:'<script src="js/main.js"><\/script>'):''}\n</body>\n</html>\n`}
+document.querySelectorAll('#drawer a').forEach(a=>a.onclick=()=>document.body.classList.remove('open'));`:'')+(fl?`document.querySelectorAll('.fad').forEach(a=>{setTimeout(()=>a.hidden=false,(+a.dataset.delay||0)*1000);a.querySelector('.x').onclick=()=>a.remove();if(a.classList.contains('popup'))a.onclick=e=>{if(e.target===a)a.remove()}});`:'')+(o.login.on?`const lm=document.getElementById('lgm'),lb=document.getElementById('lg');if(lb&&lm){lb.onclick=()=>lm.hidden=false;lm.querySelector('.x').onclick=()=>lm.hidden=true;lm.onclick=e=>{if(e.target===lm)lm.hidden=true};const nt=lm.querySelector('.note'),fm=lm.querySelector('form');lm.querySelectorAll('[data-nu]').forEach(b=>b.onclick=()=>nt.hidden=false);if(fm)fm.onsubmit=e=>{if(!fm.getAttribute('action')){e.preventDefault();nt.hidden=false}}}`:'')
++(o.extras.prog?`const sp=document.getElementById('sprog');if(sp){const u=()=>{const h=document.documentElement;const t=h.scrollTop/(h.scrollHeight-h.clientHeight||1);sp.style.transform='scaleX('+t+')'};u();addEventListener('scroll',u,{passive:true});addEventListener('resize',u)}`:'')
++(o.extras.top?`const tt=document.getElementById('totop');if(tt){const u=()=>tt.classList.toggle('on',scrollY>400);u();addEventListener('scroll',u,{passive:true});tt.onclick=()=>scrollTo({top:0,behavior:'smooth'})}`:'')
++(o.extras.anim?`if('IntersectionObserver' in window&&!matchMedia('(prefers-reduced-motion:reduce)').matches){const ob=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');ob.unobserve(e.target)}}),{threshold:.08,rootMargin:'0px 0px -40px 0px'});document.querySelectorAll('.anim').forEach(e=>ob.observe(e))}else document.querySelectorAll('.anim').forEach(e=>e.classList.add('in'));`:'')
++`document.querySelectorAll('.gal img').forEach(im=>im.addEventListener('click',()=>{const lb=document.createElement('div');lb.className='lbx';const bi=new Image();bi.src=im.src;bi.alt=im.alt;lb.appendChild(bi);lb.onclick=()=>lb.remove();document.body.appendChild(lb)}));
+const cf=document.querySelector('#contact form[data-fs]');if(cf)cf.onsubmit=async e=>{e.preventDefault();const fd=new FormData(cf);const old=cf.querySelector('.msg');if(old)old.remove();try{const r=await fetch(cf.action,{method:'POST',body:fd,headers:{Accept:'application/json'}});const n=document.createElement('p');n.className='msg';n.textContent=r.ok?'پیام شما ارسال شد. ممنون!':'ارسال نشد. لطفاً دوباره تلاش کنید.';if(!r.ok)n.classList.add('err');cf.appendChild(n);if(r.ok)cf.reset()}catch(_){const n=document.createElement('p');n.className='msg err';n.textContent='ارسال نشد. لطفاً دوباره تلاش کنید.';cf.appendChild(n)}};`;
+return{css,js,files,body:widgets+nav+lgf+bodyH+ft+fl+lgm,seo:{desc,og,fav,keywords:seo.keywords}}}
+function page(inl,P){const p=P||parts();const fontLink=['vazir','noto','amiri','lalezar'].includes(C.font)?`<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700&family=Noto+Sans+Arabic:wght@400;700&family=Amiri:wght@400;700&family=Lalezar&display=swap" rel="stylesheet">`:'';
+return`<!doctype html>\n<html lang="fa" dir="rtl" data-theme="${C.theme}">\n<head>\n<meta charset="utf-8">\n<meta name="viewport" content="width=device-width,initial-scale=1">\n<title>${esc(C.name)} — ${esc(C.tag)}</title>\n<meta name="description" content="${esc(p.seo.desc)}">\n${p.seo.keywords?`<meta name="keywords" content="${esc(p.seo.keywords)}">`:''}\n<meta property="og:title" content="${esc(C.name)}">\n<meta property="og:description" content="${esc(p.seo.desc)}">\n<meta property="og:type" content="website">\n${p.seo.og?`<meta property="og:image" content="${esc(p.seo.og)}">`:''}\n${p.seo.fav?`<link rel="icon" href="${esc(p.seo.fav)}">`:''}\n${fontLink}\n${inl?`<style>${p.css}</style>`:'<link rel="stylesheet" href="css/style.css">'}\n</head>\n<body>\n${p.body}\n${p.js?(inl?`<script>${p.js}<\/script>`:'<script src="js/main.js"><\/script>'):''}\n</body>\n</html>\n`}
 const pv=()=>{$('#pv iframe').srcdoc=page(true)};
+
+/* رویدادها */
 $('#panel').addEventListener('click',e=>{const b=e.target.closest('[data-v]'),m=e.target.closest('[data-mv]');
-if(b){const v=b.dataset.v;set(b.dataset.k,v==='true'?true:v==='false'?false:v);show();pv()}
-if(m){const[i,d]=m.dataset.mv.split(',').map(Number),j=i+d,a=C.order;if(j>=0&&j<a.length){[a[i],a[j]]=[a[j],a[i]];show();pv()}}
+if(b){snap();const v=b.dataset.v;set(b.dataset.k,v==='true'?true:v==='false'?false:v);save();show();pv();return}
+if(m){snap();const[i,d]=m.dataset.mv.split(',').map(Number),j=i+d,a=C.order;if(j>=0&&j<a.length){[a[i],a[j]]=[a[j],a[i]];save();show();pv()}return}
+const tpl=e.target.closest('[data-tpl]');if(tpl){snap();C=dm(C,TEMPLATES[tpl.dataset.tpl].data);save();show();pv();return}
 const r=e.target.closest('[data-rm]'),g=e.target.closest('[data-gm]');
-if(r){r.dataset.rm==='h'?C.hero.img='':C.gallery.imgs.splice(+r.dataset.rm.split('.')[1],1);show();pv()}
-if(g){const[i,d]=g.dataset.gm.split(',').map(Number),j=i+d,a=C.gallery.imgs;if(j>=0&&j<a.length){[a[i],a[j]]=[a[j],a[i]];show();pv()}}
+if(r){snap();const k=r.dataset.rm;if(k==='h')C.hero.img='';else if(k==='og')C.seo.og='';else if(k==='fav')C.seo.favicon='';else if(k.startsWith('g.'))C.gallery.imgs.splice(+k.split('.')[1],1);save();show();pv();return}
+if(g){snap();const[i,d]=g.dataset.gm.split(',').map(Number),j=i+d,a=C.gallery.imgs;if(j>=0&&j<a.length){[a[i],a[j]]=[a[j],a[i]];save();show();pv()}return}
 const im=e.target.closest('[data-im]'),ir=e.target.closest('[data-ir]'),ix=e.target.closest('[data-ix]'),ad=e.target.closest('[data-add]'),L2=C.services.list;
-if(im){const[i,d]=im.dataset.im.split(',').map(Number),j=i+d;if(j>=0&&j<L2.length){[L2[i],L2[j]]=[L2[j],L2[i]];show();pv()}}
-if(ir){L2.splice(+ir.dataset.ir,1);show();pv()}
-if(ix){const[i,j]=ix.dataset.ix.split(',').map(Number);L2[i].imgs.splice(j,1);show();pv()}
-if(ad){L2.push(NI('مورد جدید'));show();pv()}
+if(im){snap();const[i,d]=im.dataset.im.split(',').map(Number),j=i+d;if(j>=0&&j<L2.length){[L2[i],L2[j]]=[L2[j],L2[i]];save();show();pv()}return}
+if(ir){snap();L2.splice(+ir.dataset.ir,1);save();show();pv();return}
+if(ix){snap();const[i,j]=ix.dataset.ix.split(',').map(Number);L2[i].imgs.splice(j,1);save();show();pv();return}
+if(ad){snap();L2.push(NI('مورد جدید'));save();show();pv();return}
 const aa=e.target.closest('[data-aa]'),ar=e.target.closest('[data-ar]');
-if(aa){C.ads.list.push(NA());show();pv()}
-if(ar){C.ads.list.splice(+ar.dataset.ar,1);show();pv()}
+if(aa){snap();C.ads.list.push(NA());save();show();pv();return}
+if(ar){snap();C.ads.list.splice(+ar.dataset.ar,1);save();show();pv();return}
 const sa=e.target.closest('[data-sa]'),sx=e.target.closest('[data-sx]'),ti=e.target.closest('[data-ti]'),tx=e.target.closest('[data-tx]');
 const groupBtn=e.target.closest('[data-group]');
-if(groupBtn){const gi=+groupBtn.dataset.group;expandedGroup=expandedGroup===gi?-1:gi;rail()}
-const go=e.target.closest('[data-go]');if(go){s=+go.dataset.go;expandedGroup=groupForStep(s);show();pv()}
-if(sa){C.sliders.push(NS());show();pv()}
-if(sx){C.sliders.splice(+sx.dataset.sx,1);show();pv()}
-if(ti){C.sliders[+ti.dataset.ti].items.push({img:'',t:'آیتم جدید',link:''});show();pv()}
-if(tx){const[i,j]=tx.dataset.tx.split(',').map(Number);C.sliders[i].items.splice(j,1);show();pv()}
-if(e.target.id==='ex')exp()});
+if(groupBtn){const gi=+groupBtn.dataset.group;expandedGroup=expandedGroup===gi?-1:gi;rail($('#srch').value);return}
+const go=e.target.closest('[data-go]');if(go){s=+go.dataset.go;expandedGroup=groupForStep(s);show();pv();return}
+if(sa){snap();C.sliders.push(NS());save();show();pv();return}
+if(sx){snap();C.sliders.splice(+sx.dataset.sx,1);save();show();pv();return}
+if(ti){snap();C.sliders[+ti.dataset.ti].items.push({img:'',t:'آیتم جدید',link:''});save();show();pv();return}
+if(tx){snap();const[i,j]=tx.dataset.tx.split(',').map(Number);C.sliders[i].items.splice(j,1);save();show();pv();return}
+if(e.target.id==='ex')exp();
+if(e.target.id==='rst'){if(confirm('همه چیز پاک شود و از نو شروع شود؟')){localStorage.removeItem(SK);C=clone(DEFAULT);H.past.length=0;H.future.length=0;expandedGroup=0;s=0;save();show();pv();return}}
+});
 const rs=f=>new Promise(r=>{const i=new Image(),u=URL.createObjectURL(f);i.onload=()=>{const k=Math.min(1,1600/Math.max(i.width,i.height)),c=document.createElement('canvas');c.width=i.width*k;c.height=i.height*k;const x=c.getContext('2d');x.fillStyle='#fff';x.fillRect(0,0,c.width,c.height);x.drawImage(i,0,0,c.width,c.height);URL.revokeObjectURL(u);r(c.toDataURL('image/jpeg',.85))};i.onerror=()=>r(null);i.src=u});
-$('#panel').addEventListener('change',async e=>{const t=e.target;if(!t.dataset.up)return;const ds=(await Promise.all([...t.files].map(rs))).filter(Boolean);if(!ds.length)return;const u=t.dataset.up;if(u==='h')C.hero.img=ds[0];else if(u[0]==='i')C.services.list[+u.slice(1)].imgs.push(...ds);else if(u[0]==='a')C.ads.list[+u.slice(1)].img=ds[0];else if(u[0]==='s'){const[a,b]=u.slice(1).split('_').map(Number);C.sliders[a].items[b].img=ds[0]}else if(u[0]==='m'){const n=[...t.files].map(f=>f.name.replace(/\.[^.]+$/,''));ds.forEach((d,i)=>C.sliders[+u.slice(1)].items.push({img:d,t:n[i]||'',link:''}))}else ds.forEach(d=>C.gallery.imgs.push({d,a:''}));show();pv()});
-$('#panel').addEventListener('input',e=>{if(e.target.dataset.k){set(e.target.dataset.k,e.target.value);pv()}});
-$('#bk').onclick=()=>{s=Math.max(0,s-1);expandedGroup=groupForStep(s);show();pv()};$('#nx').onclick=()=>{s=Math.min(steps.length-1,s+1);expandedGroup=groupForStep(s);show();pv()};
+$('#panel').addEventListener('change',async e=>{const t=e.target;if(!t.dataset.up)return;snap();const ds=(await Promise.all([...t.files].map(rs))).filter(Boolean);if(!ds.length)return;const u=t.dataset.up;if(u==='h')C.hero.img=ds[0];else if(u==='og')C.seo.og=ds[0];else if(u==='fav')C.seo.favicon=ds[0];else if(u[0]==='i')C.services.list[+u.slice(1)].imgs.push(...ds);else if(u[0]==='a')C.ads.list[+u.slice(1)].img=ds[0];else if(u[0]==='s'){const[a,b]=u.slice(1).split('_').map(Number);C.sliders[a].items[b].img=ds[0]}else if(u[0]==='m'){const n=[...t.files].map(f=>f.name.replace(/\.[^.]+$/,''));ds.forEach((d,i)=>C.sliders[+u.slice(1)].items.push({img:d,t:n[i]||'',link:''}))}else ds.forEach(d=>C.gallery.imgs.push({d,a:''}));t.value='';save();show();pv()});
+let editingField=false;
+$('#panel').addEventListener('focusin',e=>{if(e.target.dataset&&e.target.dataset.k&&!editingField){snap();editingField=true}});
+$('#panel').addEventListener('focusout',e=>{if(e.target.dataset&&e.target.dataset.k)editingField=false});
+$('#panel').addEventListener('input',e=>{if(e.target.dataset.k){set(e.target.dataset.k,e.target.value);saveD();pv()}});
+$('#srch').addEventListener('input',e=>rail(e.target.value));
+$('#bk').onclick=()=>{s=Math.max(0,s-1);expandedGroup=groupForStep(s);show();pv()};
+$('#nx').onclick=()=>{s=Math.min(steps.length-1,s+1);expandedGroup=groupForStep(s);show();pv()};
+$('#un').onclick=undo;$('#re').onclick=redo;
+document.addEventListener('keydown',e=>{const tag=e.target.tagName;if(tag==='INPUT'||tag==='TEXTAREA'||tag==='SELECT')return;
+ if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='z'&&!e.shiftKey){e.preventDefault();undo()}
+ else if((e.ctrlKey||e.metaKey)&&(e.key.toLowerCase()==='y'||(e.key.toLowerCase()==='z'&&e.shiftKey))){e.preventDefault();redo()}
+ else if((e.ctrlKey||e.metaKey)&&e.key==='ArrowLeft'){e.preventDefault();if(s<steps.length-1){s++;expandedGroup=groupForStep(s);show();pv()}}
+ else if((e.ctrlKey||e.metaKey)&&e.key==='ArrowRight'){e.preventDefault();if(s>0){s--;expandedGroup=groupForStep(s);show();pv()}}
+});
 document.querySelectorAll('[data-w]').forEach(b=>b.onclick=()=>{document.querySelectorAll('[data-w]').forEach(x=>x.classList.toggle('on',x===b));$('#pv iframe').style.maxWidth=b.dataset.w});document.querySelector('[data-w="100%"]')?.classList.add('on');
 const README=`راهنمای سایت شما\n\n۱. برای دیدن سایت، فایل index.html را با دوبار کلیک باز کنید.\n۲. برای تغییر رنگ و ظاهر، بالای فایل css/style.css را ببینید (بخش :root).\n۳. عکس‌ها در پوشه images هستند. برای عوض‌کردن هر عکس، عکس جدید را با همان اسم و پسوند (.jpg) جایگزین کنید.\n۴. برای آنلاین کردن: پوشه را روی netlify.com/drop بکشید یا از GitHub Pages استفاده کنید.\n`;
 async function exp(){const st=$('#st');let dl=null;try{dl=await claude.use('downloads')}catch(e){}
-
 const p=parts(true),z=new JSZip();z.file('index.html',page(false,p));z.file('css/style.css',p.css);p.files.forEach(([n,d])=>z.file(n,d.split(',')[1],{base64:true}));if(p.js)z.file('js/main.js',p.js);z.file('README.txt',README);
 try{const bl=await z.generateAsync({type:'blob'});if(dl)await dl.save({filename:'my-site.zip',data:bl});else{const a=document.createElement('a');a.href=URL.createObjectURL(bl);a.download='my-site.zip';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1e4)}st.textContent='ذخیره شد.'}catch(e){st.textContent=e.code==='declined'?'ذخیره لغو شد.':'ذخیره نشد.'}}
-show();pv();
+load();show();pv();
 </script></body></html>
